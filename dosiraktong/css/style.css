@@ -46,23 +46,77 @@ body{
     display: block;
 }
 /* 상단 */
-.header{ 
-    position: relative;
+.header{
+     /*메뉴가 상단에 고정해서 스크롤이 된다면 fixed  */
+    position: fixed;
+    left: 0;
+    top: 0;
     display: block;
+    width: 100%;
+    height: 100px;
+    /* header는 무조건 z-index 쓰자 최대값으로 쓰자. */
+    z-index: 9999;
+    background: rgba(255, 255, 255, 0);
+    transition: height 0.5s, background 0.5s;
 }
+
 .header .inner { 
     max-width: 100%;
+    height: 100%;
 }
-.logo{ 
+/* 
+    left, top, right, bottom 사용시 
+    반드시 position:absolute 쓰자. 
+    즉, position:relative 에 쓰지말자 
+*/
 
+.logo{ 
+    position: absolute;
+    top: 35px;
+    left: 60px;
+    /* a,span 등등은 기본 display:inline 
+    너비, 높이, margin, padding 설정 못함
+    그래서 최소 inline-block 이라고 해야한다*/
+    display: inline-block;
+    width: 125px;
+    height: 30px;
+    background:url("../images/logo_white.png") no-repeat center;
+    background-size: cover;
+    transition: top 0.5s background 0.5s;
+}
+.nav{ 
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
 }
 .gnb{ 
-    
+    display: flex;
+    height: 100%;
+    align-items: center;    
+}
+.gnb li { 
+
+}
+/* 스크롤시 css 적용 */
+.header.active{
+    height: 80px; 
+    background: rgba(255, 255, 255, 1);
+}
+
+.header.active .logo{
+    top: 25px; 
+    background: url(../images/logo.png)no-repeat center;
+    background-size: cover;
 }
 /* 비주얼 */
 .visual{ 
     position: relative;
     display: block;
+    width: 100%;
+    height: 100vh;
+    background: url("../images/main_visual_1.jpg")no-repeat center;
+    background-size: cover;
 }
 /* 서비스 */
 .service{ 
