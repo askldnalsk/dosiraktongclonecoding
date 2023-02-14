@@ -2,27 +2,33 @@
 /* 절대로 위의 줄은 1번줄에 배치 */
 /* 글꼴 import 진행 */
 @import url("./font/font.css");
-*{ 
+
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-ul, li { 
+ul,
+li {
     list-style-type: none;
 }
-a { 
+
+a {
     text-decoration: none;
     color: #333;
 }
-img { 
+
+img {
     border: 0;
     vertical-align: middle;
 }
-html { 
+
+html {
     font-size: 16px;
 }
-body{ 
+
+body {
     font-family: "Poppins", "Pretendard", sans-serif;
     color: #222;
     font-size: 16px;
@@ -30,8 +36,12 @@ body{
     letter-spacing: 0;
     word-break: keep-all;
 }
-/* 공통요소 */
-.inner { 
+html.active { 
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+/* 공통요소 : 2번 이상 재활용 코드 */
+.inner {
     position: relative;
     display: block;
     /* 반응형이므로 */
@@ -40,14 +50,16 @@ body{
     /* block 요소 가운데 정렬 */
     margin: 0 auto;
 }
+
 /* 레이아웃 */
-.wrap{ 
+.wrap {
     position: relative;
     display: block;
 }
+
 /* 상단 */
-.header{
-     /*메뉴가 상단에 고정해서 스크롤이 된다면 fixed  */
+.header {
+    /*메뉴가 상단에 고정해서 스크롤이 된다면 fixed  */
     position: fixed;
     left: 0;
     top: 0;
@@ -58,19 +70,22 @@ body{
     z-index: 9999;
     background: rgba(255, 255, 255, 0);
     transition: height 0.5s, background 0.5s;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.header .inner { 
+.header .inner {
     max-width: 100%;
     height: 100%;
+    z-index: 9;
 }
+
 /* 
     left, top, right, bottom 사용시 
     반드시 position:absolute 쓰자. 
     즉, position:relative 에 쓰지말자 
 */
 
-.logo{ 
+.logo {
     position: absolute;
     top: 35px;
     left: 60px;
@@ -80,61 +95,231 @@ body{
     display: inline-block;
     width: 125px;
     height: 30px;
-    background:url("../images/logo_white.png") no-repeat center;
+    background: url("../images/logo_white.png") no-repeat center;
     background-size: cover;
     transition: top 0.5s background 0.5s;
 }
-.nav{ 
+
+.nav {
     position: absolute;
     right: 0;
     top: 0;
     height: 100%;
 }
-.gnb{ 
+
+.gnb {
     display: flex;
     height: 100%;
-    align-items: center;    
+    /* 세로 중앙 정렬 */
+    align-items: center;
 }
-.gnb li { 
+
+/* .gnb > li : 주의 사항 만약에 서브 메뉴가 있다면 */
+.gnb>li {}
+
+.gnb>li>a {
+    display: block;
+    font-size: 17px;
+    /* font-weigth: 400 */
+    font-weight: 500;
+    color: #fff;
+    /* 왜 padding 을 쓰는가? a태그 영역확대 */
+    padding: 40px 38px;
+}
+
+.gnb>li>a>span {
+    position: relative;
+    display: block;
+    padding-bottom: 7px;
+}
+
+.gnb>li>a>span::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    display: block;
+    width: 0;
+    height: 2px;
+    background: #fff;
+    transition: width 0.5s;
+}
+
+.gnb>li>a:hover>span::after {
+    width: 100%;
+}
+
+/* 
+javascript에서는 display:none 이면
+opacity:0 은 배제합니다. 작동이 되요.
+선택이 안될 때가 있어요. 
+*/
+
+.mb-bt{ 
+    position: absolute;
+    right: -20000px;
+    top: 24px;
+    width: 30px;
+    height: 22px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+.mb-bt span {
+    position: absolute;
+    left: 0;
+    display: block; 
+    width: 100%;
+    height: 1px;
+    background: #fff;
+}
+.mb-bt span:nth-child(1){ 
+    top: 0;
+    transition: transform 0.3s;
+}
+.mb-bt span:nth-child(2){ 
+    top: calc(50%-1px);
+    transition: opacity 0.2s;
+}
+.mb-bt span:nth-child(3){ 
+    bottom: 0;
+    transition: transform 0.3s;
 
 }
+/* 모바일 메뉴 */
+.mb-nav{
+     /* 
+     만약 releative 라면 다른 영역에 영향을 준다.
+     margin, padding, width, height ...  */
+    position: absolute;
+    left: 100%;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    background: #fff;
+    padding-top: 90px;
+    transition: left 0.3s ease-in-out;
+} 
+
+.mb-nav-gnb{ 
+
+}
+.mb-nav-gnb > li{ 
+    border-bottom: 1px solid #e5e5e5;
+}
+.mb-nav-gnb > li > a{
+    display: block; 
+    padding: 20px 70px 20px 40px;
+    font-size: 24px;
+}
 /* 스크롤시 css 적용 */
-.header.active{
-    height: 80px; 
+.header.active {
+    height: 80px;
     background: rgba(255, 255, 255, 1);
 }
 
-.header.active .logo{
-    top: 25px; 
+.logo.active {
+    top: 25px;
     background: url(../images/logo.png)no-repeat center;
     background-size: cover;
 }
+.logo.active-blue{ 
+    background: url(../images/logo.png)no-repeat center;
+    background-size: cover;
+}
+.gnb > li > a.active { 
+    color: #222;
+}
+
+/* 모바일 버튼 애니메이션 */
+.mb-bt span.active { 
+    background: #222;
+}
+.mb-bt.active span:nth-child(1){
+    transform: rotate(45deg);
+    top: calc(50% - 1px);
+}
+.mb-bt.active span:nth-child(2){
+    opacity: 0;
+}
+.mb-bt.active span:nth-child(3){
+    transform: rotate(-45deg);
+    bottom: calc(50% - 1px);
+
+}
+/* 모바일 메뉴 애니메이션 */
+.mb-nav.active { 
+    left: 0;
+}
+
+/* 1. 숫자가 증가하는 형태는 모바일 작업 > 태블릿 > 데스크 탑 */
+/* 2. 숫자가 감소하는 형태는 데스크 탑 > 태블릿 > 모바일 */
+@media screen and (max-width: 1280px) {
+    .header {
+        height: 90px;
+    }
+    .logo{ 
+        top: 30px;
+        left: 20px;
+        width: 150px;
+        height: 30px;
+    }
+    .gnb>li>a {
+        padding: 25px 35px;
+    }
+}
+
+@media screen and (max-width: 1080px) {
+    .header {
+        height: 70px !important; 
+    }
+    .logo{ 
+        top: 20px !important;
+        width: 120px;
+        height: 30px;
+    }
+    .gnb{ 
+        display: none;
+    }
+    .mb-bt{ 
+        right: 20px;
+    }
+}
+
 /* 비주얼 */
-.visual{ 
+.visual {
     position: relative;
     display: block;
     width: 100%;
     height: 100vh;
-    background: url("../images/main_visual_1.jpg")no-repeat center;
-    background-size: cover;
 }
+.swvisual {}
+.visual-img {}
+.bg-1{}
+.bg-2{}
+.bg-3{}
+.bg-4{}
+
 /* 서비스 */
-.service{ 
+.service {
     position: relative;
     display: block;
 }
+
 /* 정보 */
-.info{ 
+.info {
     position: relative;
     display: block;
 }
+
 /* 서비스 카테고리 */
-.category{ 
+.category {
     position: relative;
     display: block;
 }
+
 /* 하단 */
-.footer{ 
+.footer {
     position: relative;
     display: block;
 }
