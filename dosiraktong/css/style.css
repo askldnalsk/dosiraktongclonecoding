@@ -36,10 +36,12 @@ body {
     letter-spacing: 0;
     word-break: keep-all;
 }
-html.active { 
+
+html.active {
     overflow-y: hidden;
     overflow-x: hidden;
 }
+
 /* 공통요소 : 2번 이상 재활용 코드 */
 .inner {
     position: relative;
@@ -155,7 +157,7 @@ opacity:0 은 배제합니다. 작동이 되요.
 선택이 안될 때가 있어요. 
 */
 
-.mb-bt{ 
+.mb-bt {
     position: absolute;
     right: -20000px;
     top: 24px;
@@ -165,30 +167,35 @@ opacity:0 은 배제합니다. 작동이 되요.
     border: none;
     cursor: pointer;
 }
+
 .mb-bt span {
     position: absolute;
     left: 0;
-    display: block; 
+    display: block;
     width: 100%;
     height: 1px;
     background: #fff;
 }
-.mb-bt span:nth-child(1){ 
+
+.mb-bt span:nth-child(1) {
     top: 0;
     transition: transform 0.3s;
 }
-.mb-bt span:nth-child(2){ 
+
+.mb-bt span:nth-child(2) {
     top: calc(50%-1px);
     transition: opacity 0.2s;
 }
-.mb-bt span:nth-child(3){ 
+
+.mb-bt span:nth-child(3) {
     bottom: 0;
     transition: transform 0.3s;
 
 }
+
 /* 모바일 메뉴 */
-.mb-nav{
-     /* 
+.mb-nav {
+    /* 
      만약 releative 라면 다른 영역에 영향을 준다.
      margin, padding, width, height ...  */
     position: absolute;
@@ -199,19 +206,20 @@ opacity:0 은 배제합니다. 작동이 되요.
     background: #fff;
     padding-top: 90px;
     transition: left 0.3s ease-in-out;
-} 
-
-.mb-nav-gnb{ 
-
 }
-.mb-nav-gnb > li{ 
+
+.mb-nav-gnb {}
+
+.mb-nav-gnb>li {
     border-bottom: 1px solid #e5e5e5;
 }
-.mb-nav-gnb > li > a{
-    display: block; 
+
+.mb-nav-gnb>li>a {
+    display: block;
     padding: 20px 70px 20px 40px;
     font-size: 24px;
 }
+
 /* 스크롤시 css 적용 */
 .header.active {
     height: 80px;
@@ -223,32 +231,38 @@ opacity:0 은 배제합니다. 작동이 되요.
     background: url(../images/logo.png)no-repeat center;
     background-size: cover;
 }
-.logo.active-blue{ 
+
+.logo.active-blue {
     background: url(../images/logo.png)no-repeat center;
     background-size: cover;
 }
-.gnb > li > a.active { 
+
+.gnb>li>a.active {
     color: #222;
 }
 
 /* 모바일 버튼 애니메이션 */
-.mb-bt span.active { 
+.mb-bt span.active {
     background: #222;
 }
-.mb-bt.active span:nth-child(1){
+
+.mb-bt.active span:nth-child(1) {
     transform: rotate(45deg);
     top: calc(50% - 1px);
 }
-.mb-bt.active span:nth-child(2){
+
+.mb-bt.active span:nth-child(2) {
     opacity: 0;
 }
-.mb-bt.active span:nth-child(3){
+
+.mb-bt.active span:nth-child(3) {
     transform: rotate(-45deg);
     bottom: calc(50% - 1px);
 
 }
+
 /* 모바일 메뉴 애니메이션 */
-.mb-nav.active { 
+.mb-nav.active {
     left: 0;
 }
 
@@ -258,12 +272,14 @@ opacity:0 은 배제합니다. 작동이 되요.
     .header {
         height: 90px;
     }
-    .logo{ 
+
+    .logo {
         top: 30px;
         left: 20px;
         width: 150px;
         height: 30px;
     }
+
     .gnb>li>a {
         padding: 25px 35px;
     }
@@ -271,17 +287,20 @@ opacity:0 은 배제합니다. 작동이 되요.
 
 @media screen and (max-width: 1080px) {
     .header {
-        height: 70px !important; 
+        height: 70px !important;
     }
-    .logo{ 
+
+    .logo {
         top: 20px !important;
         width: 120px;
         height: 30px;
     }
-    .gnb{ 
+
+    .gnb {
         display: none;
     }
-    .mb-bt{ 
+
+    .mb-bt {
         right: 20px;
     }
 }
@@ -293,13 +312,188 @@ opacity:0 은 배제합니다. 작동이 되요.
     width: 100%;
     height: 100vh;
 }
-.swvisual {}
-.visual-img {}
-.bg-1{}
-.bg-2{}
-.bg-3{}
-.bg-4{}
 
+.swvisual {
+    width: 100%;
+    height: 100%;
+}
+
+/* 기본 및 공통 slide 내용 css */
+.visual-img {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: green;
+}
+
+/* 상세 slide 내용 css */
+.bg-1 {
+    background: url("../images/main_visual_1.jpg") no-repeat center;
+    background-size: cover;
+}
+
+.bg-2 {
+    background: url("../images/main_visual_2.jpg") no-repeat center;
+    background-size: cover;
+}
+
+.bg-3 {
+    background: url("../images/main_visual_3.jpg") no-repeat center;
+    background-size: cover;
+}
+
+.bg-4 {
+    background: url("../images/main_visual_4.jpg") no-repeat center;
+    background-size: cover;
+}
+
+.swvisual-control {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+
+}
+
+.swvisual-prev {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+    width: 60px;
+    height: 60px;
+    border: none;
+    background: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 24px;
+}
+
+.swvisual-prev i {
+    opacity: 0.5;
+    transition: opacity 0.3s;
+}
+
+.swvisual-prev:hover i {
+    opacity: 1;
+}
+
+.swvisual-next {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    border: none;
+    background: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 24px;
+}
+
+.swvisual-next i {
+    opacity: 0.5;
+    transition: opacity 0.3s;
+}
+
+.swvisual-next:hover i {
+    opacity: 1;
+}
+
+.swvisual-title {
+    margin: 20px 0 12px;
+    font-family: "Godo", "Notokr";
+    font-size: 74px;
+    color: #fff;
+    line-height: 1.3;
+}
+
+.swvisual-txt {
+    opacity: .9;
+    margin-top: 10px;
+    font-size: 22px;
+    font-weight: 500;
+    color: #fff;
+}
+
+.swvisual-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: inline-block;
+    width: 180px;
+    height: 55px;
+    padding: 0 20px;
+    margin-top: 30px;
+    font-size: 16px;
+}
+
+.swvisual-link a {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    border: 1px solid #fff;
+    color: #fff;
+}
+
+.swvisual-link.active a {
+    display: none;
+}
+
+.swvisual-navi { 
+    margin-top: 90px;
+}
+
+.swvisual-list {
+    display: flex;
+}
+
+.swvisual-list li {
+    position: relative;
+    display: block;
+    width: 80px;
+    height: 27px;
+    color: rgba(255, 255, 255, 0.3);
+    padding: 0 10px;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+.swvisual-list li::before{ 
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.3);
+}
+.swvisual-list li::after{ 
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0%;
+    height: 2px;
+    background: rgba(255, 255, 255, 1);
+    
+}
+.swvisual-list li.active{ 
+    color: rgba(255, 255, 255, 1);
+}
+.swvisual-list li.active::after{ 
+    width: 100%;
+    transition: width 2s;
+
+}
 /* 서비스 */
 .service {
     position: relative;
