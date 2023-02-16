@@ -41,6 +41,24 @@ html.active {
     overflow-y: hidden;
     overflow-x: hidden;
 }
+/* 위로가기 */
+.gotop { 
+    position: fixed;
+    right: 50px;
+    bottom: 100px;
+    width: 100px;
+    height: 100px;
+    z-index: 9999;
+    border: 0;
+    background: blue;
+    cursor: pointer;
+    opacity: 0;
+    transition: all 0.5s;
+}
+.gotop.active{ 
+    opacity: 1;
+    background: red;
+}
 
 /* 공통요소 : 2번 이상 재활용 코드 */
 .inner {
@@ -539,39 +557,211 @@ opacity:0 은 배제합니다. 작동이 되요.
 .service-contents{ 
     display: flex;
     justify-content: space-between;
-    max-height: 680px;
-    height: 28.23vw;
+    height: 680px;
 }
 .service-left{ 
     width: calc(50% - 10px);
     height: 100%;
-    background: skyblue;
 }
-.service-right{ 
+.service-right{
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-between; 
     width: calc(50% - 10px);
     height: 100%;
-    background: hotpink;
+}
+.service-link-1{ 
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: url("../images/main_service_img1.jpg") no-repeat center;
+    background-size: cover;
+}
+.service-link-2{
+    display: block;
+    width: 100%;
+    height: calc(50% - 10px);
+    background: url("../images/main_service_img2.jpg") no-repeat center;
+    background-size: cover;
+}
+.service-link-3{ 
+    display: block;
+    width: 100%;
+    height: calc(50% - 10px);
+    background: url("../images/main_service_img3.jpg") no-repeat center;
+    background-size: cover;
 }
 @media screen and (max-width:1460px){
     .service-contents{ 
-        /* 1920 / 680 */
-        height: 28.23vw;
+        /* 
+            1460 일때 680px 부터
+            (1460px / 680px) * 100 = 46.57vw
+        */
+        height: 46.57vw;
     }
 }
+@media screen and (max-width:1024px){
+    .service{ 
+        height: auto;
+    }
+    .service-contents{ 
+        flex-wrap: wrap;
+        height: auto;
+    }
+    .service-left{ 
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    .service-right{ 
+        width: 100%;
+        justify-content: center;
+    }
+
+    .service-link-1{
+        max-width: 660px;
+        /* 1024px : 660px = 64.45vw */
+        width: 64.45vw;
+
+        /* 1024px : 640px = 62.5vw */
+        height: 62.5vw;
+        /* flex 를 적용 안했으므로 */
+        margin: 0 auto;
+    }
+    .service-link-2{ 
+        max-width: 660px;
+        /* 1024px : 660px = 64.45vw */
+        width: 64.45vw;
+        /* 1024px : 310px = 30vw */
+        height: 30vw;
+        margin-bottom: 20px;
+    }
+    .service-link-3{
+        max-width: 660px;
+        /* 1024px : 660px = 64.45vw */
+        width: 64.45vw;
+        /* 1024px : 310px = 30vw */
+        height: 30vw;    
+    }
+}
+@media screen and (max-width:640px){
+    .service-link-1{
+        width: 100%; 
+        height: 275px;
+    }
+    .service-link-2{
+        width: 100%; 
+        height: 275px;
+
+    }
+    .service-link-3{
+        width: 100%; 
+        height: 275px;
+
+    }
+}
+
 /* 정보 */
 .info {
     position: relative;
     display: block;
 }
+.info .inner{
+    padding: 180px 30px; 
+}
+.info-contents{ 
+    display: flex;
+    justify-content: space-between;
+    height: 430px;
+    width: 100%;
+    background: skyblue;
+}
 
+.info-left{ 
+    width: calc(50% - 10px);
+    height: 100%;
+    background: yellow;
+}
+.info-right{ 
+    width: calc(50% - 10px);
+    height: 100%;
+    background: green;
+}
+/* info 반응형 */
+@media screen and (max-width:1280px){
+    .info-contents{ 
+        height: 383px;
+    }
+    
+}
+@media screen and (max-width:1024px){ 
+    .info-contents{ 
+        justify-content: center;
+        flex-wrap: wrap;
+        
+
+    }
+    .info-left{ 
+        width: 100%;
+        height: auto;
+        padding: 50px 0;
+    }
+    .info-right{ 
+        width: 100%;
+        height: auto;
+        padding: 50px 0;
+    }
+}
 /* 서비스 카테고리 */
 .category {
     position: relative;
     display: block;
+    height: 400px;
+}
+.swcategory { 
+    height: 100%;
+}
+.category-link{ 
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.clink-1{ 
+    background: hotpink;
+}
+.clink-2{ 
+    background: yellowgreen;
+}
+.clink-3{
+    background: yellow;
+}
+.category-pop{ 
+    position: absolute;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 99;
+}
+.category-pop.active{ 
+    display: none !important;
+}
+@media screen and (max-width: 1024px){
+    .category-pop{ 
+        display: flex;
+    }
 }
 
 /* 하단 */
 .footer {
     position: relative;
     display: block;
+    padding: 40px 0;
+    text-align: center;
+    background: #222;
+    color: #666;
 }
